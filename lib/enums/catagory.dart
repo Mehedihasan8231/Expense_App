@@ -1,1 +1,1 @@
-enum ExpenseCatagory { food, travel, shooping}
+enum ExpenseCatagory { food, travel, shooping,movie,others}
