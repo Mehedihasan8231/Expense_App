@@ -1,4 +1,6 @@
+import 'package:expense_app/enums/catagory.dart';
 import 'package:expense_app/models/expense.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ExpenseListItem extends StatelessWidget {
@@ -13,19 +15,29 @@ class ExpenseListItem extends StatelessWidget {
             horizontal: 20,
             vertical: 16,
           ),
-        child: Row(
+        child: Column(
           children: [
             Text(expense.title),
-            const Spacer(),
+            SizedBox(height: 5,),
+            Row(
+              children: [
+                Text('\$${expense.amount.toStringAsFixed(2)}'),
+                Spacer(),
 
-           Row(
-             children: [
-               Icon(Icons.alarm),
+                // const Spacer(),
 
-               Text(expense.date.toString()),
-             ],
-           ),
-            Text(expense.amount.toStringAsFixed(2)),
+               Row(
+
+                 children: [
+                   Icon(CategoryIcons[expense.catagory]),
+                  // Icon(CategoryIcons[expense.catagory])
+
+                   Text(expense.getFormattedDate()),
+                 ],
+               ),
+
+              ],
+            ),
           ],
         ),
           ),

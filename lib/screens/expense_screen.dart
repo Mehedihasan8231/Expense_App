@@ -3,6 +3,7 @@ import 'package:expense_app/models/expense.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/expense_list.dart';
+import 'new_expense.dart';
 
 class ExpenseScreen extends StatefulWidget {
   const ExpenseScreen({super.key});
@@ -17,17 +18,26 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
   Expense('Flutter course', 15.84, DateTime.now(), ExpenseCatagory.shooping),
   Expense('Cox\'s bazar' , 32.53, DateTime.now(), ExpenseCatagory.travel)
   ];
+  void _openAddExtensionModel(){
+    showModalBottomSheet(
+        context: context,
+        builder: (ctx) => NewExpense());
+
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Expense'),
         actions:  [
-          IconButton(onPressed: (){},
-            icon: Icon(Icons.add),),
+          IconButton(onPressed: _openAddExtensionModel,
+            icon: Icon(Icons.add),
+          ),
         ],
       ),
       body: Column(
         children: [
+          Text('Chart'),
           Expanded(
             child: Card(
               child: expenseList(
