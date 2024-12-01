@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../enums/catagory.dart';
 import '../models/expense.dart';
 
 class NewExpense extends StatefulWidget {
@@ -14,6 +16,7 @@ class _NewExpenseState extends State<NewExpense> {
  final _titleControler = TextEditingController();
  final _amountControler = TextEditingController();
  DateTime? _selectedDate;
+ ExpenseCatagory _selectedCategory = ExpenseCatagory.others;
 
 
  void _presentDatePicker() async{
@@ -78,18 +81,45 @@ class _NewExpenseState extends State<NewExpense> {
                 ),
             ],
             ),
-            Row(
-              children: [
-                TextButton(onPressed: (){
-                  Navigator.pop(context);
-                }, child: const Text('Cancel')),
-                ElevatedButton(
-                  onPressed: (){
-                    //print(_titleControler.text);
-                  },
-                  child: const Text('Save Expense'),)
-            
-              ],
+
+            DropdownButton(
+              value: _selectedCategory,
+              alignment: Alignment.topLeft,
+                items: ExpenseCatagory.values.map((category) => DropdownMenuItem(
+                  value: category,
+                  child: Text(
+                      category.name.toUpperCase()),
+                ),
+                )
+                    .toList(),
+                onChanged: (value){
+                if(value == null){
+                  return;
+                }
+                setState(() {
+                  _selectedCategory = value;
+
+                });
+                }
+            ),
+           const  SizedBox(height: 10,),
+
+            Center(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+
+                  TextButton(onPressed: (){
+                    Navigator.pop(context);
+                  }, child: const Text('Cancel')),
+                  ElevatedButton(
+                    onPressed: (){
+                      //print(_titleControler.text);
+                    },
+                    child: const Text('Save Expense'),)
+
+                ],
+              ),
             ),
         ],
       ),
