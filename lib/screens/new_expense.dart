@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../models/expense.dart';
 
@@ -33,7 +31,8 @@ class _NewExpenseState extends State<NewExpense> {
 
  }
 
- void dispose(){
+ @override
+  void dispose(){
    _titleControler.dispose();
    _amountControler.dispose();
    super.dispose();
@@ -66,7 +65,7 @@ class _NewExpenseState extends State<NewExpense> {
                 ),
                 ),
               ),
-                SizedBox(width: 10,),
+                const SizedBox(width: 10,),
                 Text(
                   _selectedDate==null?
                       'No Date Selected': formatter.format(_selectedDate!)
@@ -75,7 +74,7 @@ class _NewExpenseState extends State<NewExpense> {
                 IconButton(
                   onPressed:_presentDatePicker ,
 
-                 icon: Icon(Icons.calendar_month),
+                 icon: const Icon(Icons.calendar_month),
                 ),
             ],
             ),
@@ -83,10 +82,10 @@ class _NewExpenseState extends State<NewExpense> {
               children: [
                 TextButton(onPressed: (){
                   Navigator.pop(context);
-                }, child: Text('Cancel')),
+                }, child: const Text('Cancel')),
                 ElevatedButton(
                   onPressed: (){
-                    print(_titleControler.text);
+                    //print(_titleControler.text);
                   },
                   child: const Text('Save Expense'),)
             
