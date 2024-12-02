@@ -21,8 +21,17 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
   void _openAddExtensionModel(){
     showModalBottomSheet(
         context: context,
-        builder: (ctx) => NewExpense());
+        builder: (ctx) => NewExpense(onAddExpense: (expense){
+          _addExpense(expense);
+        }
+        ),
+    );
 
+  }
+  void _addExpense(Expense expense){
+    setState(() {
+      _registerExpense.add(expense);
+    });
   }
 
   Widget build(BuildContext context) {
