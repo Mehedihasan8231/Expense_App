@@ -19,7 +19,12 @@ class _NewExpenseState extends State<NewExpense> {
  DateTime? _selectedDate;
  ExpenseCatagory _selectedCategory = ExpenseCatagory.others;
 
-
+ @override
+ void dispose(){
+   _titleControler.dispose();
+   _amountControler.dispose();
+   super.dispose();
+ }
 
 
  void _presentDatePicker() async {
@@ -57,23 +62,14 @@ class _NewExpenseState extends State<NewExpense> {
        );
        return;
      }
-      widget.onAddExpense(
-       Expense(
-         title: _titleControler.text,
-         amount: _amountControler,
-         date: _selectedDate!,
-         category: _selectedCategory,
+     print('nabid');
+     widget.onAddExpense(
 
-       ),
-     // );
+     Expense( _titleControler.text, enteredAmount,_selectedDate!,  _selectedCategory));
+     Navigator.pop(context);
    }
 
- @override
-  void dispose(){
-   _titleControler.dispose();
-   _amountControler.dispose();
-   super.dispose();
- }
+
 
   @override
   Widget build(BuildContext context) {
