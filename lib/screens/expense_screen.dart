@@ -29,9 +29,7 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
 
   }
   void _addExpense(Expense expense){
-    print('yas updated');
     setState(() {
-      print('list updated');
       _registerExpense.add(expense);
     });
   }
